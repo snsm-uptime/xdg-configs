@@ -1,0 +1,4 @@
+[core]
+    sshCommand = "ssh -i ~/.ssh/id_ed25519_personal -F /dev/null"
+[user]
+    email = s.m.sebastian.n@gmail.com

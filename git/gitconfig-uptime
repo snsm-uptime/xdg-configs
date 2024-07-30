@@ -1,0 +1,4 @@
+[core]
+    sshCommand = "ssh -i ~/.ssh/id_ed25519_uptime -F /dev/null"
+[user]
+    email = apps.uptime@gmail.com
