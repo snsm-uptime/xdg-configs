@@ -60,14 +60,20 @@ ENABLE_CORRECTION="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   alias-finder
+  aliases
   brew
   colored-man-pages
+  docker
+  docker-compose
   git
   git-commit
   gitignore
   man
   node
   npm
+  poetry
+  poetry-env
+  tmux
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -87,6 +93,11 @@ else
   export EDITOR='nvim'
 fi
 
+# required for alias-finder
+zstyle ':omz:plugins:alias-finder' autoload yes # disabled by default
+zstyle ':omz:plugins:alias-finder' longer yes # disabled by default
+zstyle ':omz:plugins:alias-finder' exact yes # disabled by default
+zstyle ':omz:plugins:alias-finder' cheaper yes # disabled by default
 
 # Created by `pipx` on 2024-07-29 08:01:35
 export PATH="$PATH:/Users/sebastiansotom/.local/bin"

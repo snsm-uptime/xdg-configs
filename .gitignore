@@ -2,5 +2,7 @@ iterm2
 lazygit
 nvm
 docker
+tmux
 .zcompdump-*
 .zsh_history
+gh
