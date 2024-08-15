@@ -26,6 +26,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 #  ___) | | | | (_) | |  | |_  | |__| (_) | | | |  _| | (_| \__ \
 # |____/|_| |_|\___/|_|   \__|  \____\___/|_| |_|_| |_|\__, |___/
 #                                                      |___/     
+export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 export ZDOTDIR=$XDG_CONFIG_HOME/zsh
 export PYTHON_HISTORY=$XDG_STATE_HOME/python/history
 export DOCKER_CONFIG=$XDG_CONFIG_HOME/docker

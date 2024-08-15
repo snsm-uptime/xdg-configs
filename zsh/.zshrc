@@ -61,6 +61,8 @@ ENABLE_CORRECTION="true"
 plugins=(
   alias-finder
   brew
+  docker
+  docker-compose
   colored-man-pages
   git
   git-commit
