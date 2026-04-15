@@ -29,10 +29,14 @@ if git -C "$DOTFILES" rev-parse --is-inside-work-tree &>/dev/null; then
       log_warn "GPG signature valid but key is not in your trusted keyring — verify manually"
       log_warn "Run: git -C $DOTFILES log -1 --show-signature"
       ;;
-    B|E)
-      log_error "BAD or unverifiable GPG signature on HEAD — refusing to proceed."
+    B)
+      log_error "BAD GPG signature on HEAD — refusing to proceed."
       log_error "Run: git -C $DOTFILES log -1 --show-signature"
       exit 1
+      ;;
+    E)
+      log_warn "GPG key not found in keyring — cannot verify HEAD signature."
+      log_warn "Import your signing key or run: git -C $DOTFILES log -1 --show-signature"
       ;;
     N)
       log_warn "HEAD commit is not GPG-signed — supply-chain verification skipped."

@@ -9,6 +9,19 @@
 # To go fully flat, drop the submodule and track init.lua/lua/ directly.
 link "$DOTFILES/nvim/config" "$XDG_CONFIG_HOME/nvim"
 
+# ── Submodules ────────────────────────────────────────────────────────────────
+if [[ -z "$(ls -A "$DOTFILES/nvim/config")" ]]; then
+  log_info "Initializing nvim submodule (LazyVim starter)"
+  if [[ "$DRY_RUN" == "false" ]]; then
+    git -C "$DOTFILES" submodule update --init --recursive
+    log_ok "nvim submodule initialized"
+  else
+    log_dry "git submodule update --init --recursive"
+  fi
+else
+  log_skip "nvim submodule already initialized"
+fi
+
 # ── Neovim binary ─────────────────────────────────────────────────────────────
 # Bump NVIM_VERSION to upgrade. After changing the version, run:
 #   curl -fsSL https://github.com/neovim/neovim/releases/download/<ver>/nvim.appimage.sha256sum
