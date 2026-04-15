@@ -1,5 +1,18 @@
 alias vim="$EDITOR"
 alias vi="$EDITOR"
+
+#  ____  ____  _   _
+# / ___||  _ \| | | |
+# \___ \| |_) | |_| |
+#  ___) |  __/ \___/
+# |____/|_|
+SERVER_IP=187.124.250.74
+SSH_CLAW_KEY='~/.ssh/kvm_claw'
+SSH_KVM_KEY='~/.ssh/id_ed25519_uptime'
+alias sshroot="ssh -i $SSH_KVM_KEY root@$SERVER_IP"
+alias sshsnsm="ssh -i $SSH_KVM_KEY snsm@$SERVER_IP"
+alias sshclaw="ssh -i $SSH_CLAW_KEY claw@$SERVER_IP"
+
 #  _____    _ _ _      ____             __ _
 # | ____|__| (_) |_   / ___|___  _ __  / _(_) __ _ ___
 # |  _| / _` | | __| | |   / _ \| '_ \| |_| |/ _` / __|

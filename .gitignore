@@ -8,9 +8,6 @@ ssh/*.key
 # ── nvim runtime ──────────────────────────────────────────────────────────────
 nvim/config/lazy-lock.json  # submodule exception — lockfile regenerates on startup
 
-# ── nvm — installed as data, nothing to track ────────────────────────────────
-nvm/
-
 # ── docker — only config.json is tracked, rest is runtime ───────────────────
 docker/contexts/
 docker/cli-plugins/

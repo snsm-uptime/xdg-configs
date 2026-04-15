@@ -1,3 +1,4 @@
 # minimal — git + tmux only
 git
 tmux
+zsh
