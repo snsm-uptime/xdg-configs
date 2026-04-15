@@ -1,0 +1,9 @@
+# full — everything
+git
+tmux
+zsh
+nvim
+nvm
+ssh
+docker
+gh

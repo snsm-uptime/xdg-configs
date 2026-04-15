@@ -1,9 +1,22 @@
-iterm2
-lazygit
-nvm
-docker
-tmux
-.zcompdump-*
-.zsh_history
-gh
-zsh/.zcompdump
+# ── Credentials & secrets ─────────────────────────────────────────────────────
+gh/hosts.yml               # OAuth tokens — never commit
+ssh/known_hosts
+ssh/id_*
+ssh/*.pem
+ssh/*.key
+
+# ── nvim runtime ──────────────────────────────────────────────────────────────
+nvim/config/lazy-lock.json  # submodule exception — lockfile regenerates on startup
+
+# ── nvm — installed as data, nothing to track ────────────────────────────────
+nvm/
+
+# ── docker — only config.json is tracked, rest is runtime ───────────────────
+docker/contexts/
+docker/cli-plugins/
+docker/.token
+
+# ── OS junk ───────────────────────────────────────────────────────────────────
+.DS_Store
+**/.DS_Store
+Thumbs.db
