@@ -101,3 +101,8 @@ zstyle ':omz:plugins:alias-finder' cheaper yes # disabled by default
 
 # Created by `pipx` on 2024-07-29 08:01:35
 export PATH="$PATH:/Users/sebastiansotom/.local/bin"
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/sebastiansotom/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions

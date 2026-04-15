@@ -6,3 +6,4 @@ tmux
 .zcompdump-*
 .zsh_history
 gh
+zsh/.zcompdump
