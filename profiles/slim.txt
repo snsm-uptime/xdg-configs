@@ -1,0 +1,6 @@
+# slim — no nvim, no docker
+git
+tmux
+zsh
+ssh
+gh
