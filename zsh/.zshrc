@@ -111,4 +111,8 @@ fpath=(/Users/sebastiansotom/.docker/completions $fpath)
 autoload -Uz compinit
 compinit
 
+if [[ ! "$PATH" == */home/snsm/.local/share/fzf/bin* ]]; then
+  PATH="${PATH:+${PATH}:}/home/snsm/.local/share/fzf/bin"
+fi
+
 source <(fzf --zsh)
