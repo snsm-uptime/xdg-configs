@@ -116,3 +116,4 @@ if [[ ! "$PATH" == */home/snsm/.local/share/fzf/bin* ]]; then
 fi
 
 source <(fzf --zsh)
+[[ -f "$XDG_CONFIG_HOME/fzf/theme.sh" ]] && source "$XDG_CONFIG_HOME/fzf/theme.sh"

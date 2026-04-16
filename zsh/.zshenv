@@ -52,17 +52,6 @@ export PGPASSFILE="$XDG_CONFIG_HOME/pg/pgpass"
 export PGSERVICEFILE="$XDG_CONFIG_HOME/pg/pg_service.conf"
 
 
-#  ____                        
-# |  _ \ _   _  ___ _ ____   __
-# | |_) | | | |/ _ \ '_ \ \ / /
-# |  __/| |_| |  __/ | | \ V / 
-# |_|    \__, |\___|_| |_|\_/  
-#        |___/                 
-export PATH="$HOME/.pyenv/bin:$PATH"
-export PYENV_ROOT=$XDG_DATA_HOME/pyenv
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
-
 #  _ ____   ___ __ ___  
 # | '_ \ \ / / '_ ` _ \ 
 # | | | \ V /| | | | | |

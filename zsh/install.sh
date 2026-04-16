@@ -51,19 +51,3 @@ if [[ ! -d "$P10K_DIR" ]]; then
 else
   log_skip "powerlevel10k already installed"
 fi
-
-# ── fzf ───────────────────────────────────────────────────────────────────────
-FZF_DIR="$XDG_DATA_HOME/fzf"
-
-if [[ ! -x "$FZF_DIR/bin/fzf" ]]; then
-  log_info "Installing fzf → $FZF_DIR"
-  if [[ "$DRY_RUN" == "false" ]]; then
-    [[ ! -d "$FZF_DIR" ]] && git clone --depth=1 https://github.com/junegunn/fzf.git "$FZF_DIR"
-    "$FZF_DIR/install"
-    log_ok "fzf installed"
-  else
-    log_dry "git clone fzf $FZF_DIR && $FZF_DIR/install --bin"
-  fi
-else
-  log_skip "fzf already installed"
-fi

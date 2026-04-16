@@ -2,6 +2,7 @@
 git
 tmux
 zsh
+fzf
 nvim
 nvm
 ssh
