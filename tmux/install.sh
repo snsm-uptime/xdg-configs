@@ -23,3 +23,14 @@ if [[ ! -d "$TPM_DIR" ]]; then
 else
   log_skip "TPM already installed"
 fi
+
+# ── Tokyo Night dependencies ──────────────────────────────────────────────────
+if is_macos; then
+  for pkg in bc coreutils gawk gh glab gsed jq nowplaying-cli; do
+    brew_install "$pkg"
+  done
+elif is_linux; then
+  for pkg in bc coreutils gawk jq playerctl; do
+    apt_install "$pkg"
+  done
+fi
