@@ -13,10 +13,11 @@ link "$DOTFILES/nvim/config" "$XDG_CONFIG_HOME/nvim"
 if [[ -z "$(ls -A "$DOTFILES/nvim/config")" ]]; then
   log_info "Initializing nvim submodule (LazyVim starter)"
   if [[ "$DRY_RUN" == "false" ]]; then
+    git -C "$DOTFILES" submodule sync nvim/config
     git -C "$DOTFILES" submodule update --init --recursive
     log_ok "nvim submodule initialized"
   else
-    log_dry "git submodule update --init --recursive"
+    log_dry "git submodule sync nvim/config && git submodule update --init --recursive"
   fi
 else
   log_skip "nvim submodule already initialized"
