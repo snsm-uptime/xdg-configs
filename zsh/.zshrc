@@ -11,6 +11,7 @@ alias la='exa -Dxas size'
 alias ls='exa -xas type'
 
 ZSH="$XDG_DATA_HOME/zsh/oh-my-zsh"
+ZSH_COMPDUMP="$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
 ZSH_TMUX_CONFIG="$XDG_CONFIG_HOME/tmux/tmux.conf"
 ZSH_TMUX_AUTOCONNECT=true
 ZSH_TMUX_UNICODE=true
@@ -77,7 +78,11 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
-source $XDG_CONFIG_HOME/zsh/alias.zsh
+source $ZDOTDIR/alias.zsh
+
+# Must be sourced after oh-my-zsh so p10k can hook into the prompt system.
+# Sourcing it here (rather than .zshenv) prevents double-loading on omz reload.
+[[ -f "$ZDOTDIR/.p10k.zsh" ]] && source "$ZDOTDIR/.p10k.zsh"
 
 # User configuration
 
