@@ -33,6 +33,13 @@ export DOCKER_CONFIG=$XDG_CONFIG_HOME/docker
 export CARGO_HOME=$XDG_DATA_HOME/cargo
 export PATH="$CARGO_HOME/bin:$PATH"
 
+#   __  __
+#  / _|_  /_ __
+# |  _|/ /| '_ \
+# |_| /___| .__/
+#         |_|
+export PATH="$XDG_DATA_HOME/fzf/bin:$PATH"
+
 #  ____           _                 ____   ___  _     
 # |  _ \ ___  ___| |_ __ _ _ __ ___/ ___| / _ \| |    
 # | |_) / _ \/ __| __/ _` | '__/ _ \___ \| | | | |    
