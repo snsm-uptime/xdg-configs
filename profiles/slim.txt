@@ -1,6 +1,7 @@
-# slim — no nvim, no docker
-git
-tmux
-zsh
+# slim — non dev environment
 ssh
+zsh
+fzf
+tmux
+git
 gh

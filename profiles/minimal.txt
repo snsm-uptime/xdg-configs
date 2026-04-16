@@ -1,4 +1,5 @@
-# minimal — git + tmux only
+# minimal — tuned shell
 git
 tmux
 zsh
+fzf
