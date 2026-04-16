@@ -110,4 +110,5 @@ export PATH="$PATH:/Users/sebastiansotom/.local/bin"
 fpath=(/Users/sebastiansotom/.docker/completions $fpath)
 autoload -Uz compinit
 compinit
-# End of Docker CLI completions
+
+source <(fzf --zsh)
