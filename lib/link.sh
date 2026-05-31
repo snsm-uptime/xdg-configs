@@ -33,6 +33,11 @@ link() {
   local src="$1"
   local tgt="$2"
 
+  if [[ ! -e "$src" && ! -L "$src" ]]; then
+    log_error "Cannot link: source does not exist: $src"
+    return 1
+  fi
+
   # Resolve to absolute path
   src="$(cd "$(dirname "$src")" && pwd)/$(basename "$src")"
 
@@ -42,15 +47,26 @@ link() {
     return 0
   fi
 
-  # Something exists at target — back it up
+  # Something exists at target — back up unless --force
   if [[ -e "$tgt" || -L "$tgt" ]]; then
-    local bak="${tgt}.bak-$(date +%Y%m%d%H%M%S)"
-    if [[ "$DRY_RUN" == "true" ]]; then
-      log_dry "backup $tgt → $bak"
+    if [[ "${FORCE:-false}" == "true" ]]; then
+      if [[ "$DRY_RUN" == "true" ]]; then
+        log_dry "remove (force) $tgt"
+      else
+        rm -rf "$tgt"
+      fi
     else
-      log_backup "$tgt → $(basename "$bak")"
-      mv "$tgt" "$bak"
-      _prune_backups "$tgt"
+      local bak="${tgt}.bak-$(date +%Y%m%d%H%M%S)"
+      if [[ "$DRY_RUN" == "true" ]]; then
+        log_dry "backup $tgt → $bak"
+      else
+        log_backup "$tgt → $(basename "$bak")"
+        mv "$tgt" "$bak"
+        _prune_backups "$tgt"
+        if declare -F track_record &>/dev/null; then
+          track_record BACKUP "$bak" "$tgt"
+        fi
+      fi
     fi
   fi
 
@@ -61,5 +77,8 @@ link() {
     mkdir -p "$(dirname "$tgt")"
     ln -s "$src" "$tgt"
     log_link "$src  →  $tgt"
+    if declare -F track_record &>/dev/null; then
+      track_record SYMLINK "$tgt" "$src"
+    fi
   fi
 }
