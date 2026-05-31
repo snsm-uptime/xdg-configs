@@ -18,6 +18,9 @@ else
       mkdir -p "$NVM_INSTALL_DIR"
       # Install without modifying shell rc files — .zshenv already sources nvm
       NVM_DIR="$NVM_INSTALL_DIR" PROFILE=/dev/null bash -c "$(curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh)"
+      if declare -F track_record &>/dev/null; then
+        track_record DIR "$NVM_INSTALL_DIR" "nvm install"
+      fi
       log_ok "nvm installed"
     else
       log_dry "curl nvm install.sh | bash (PROFILE=/dev/null, NVM_DIR=$NVM_INSTALL_DIR)"

@@ -31,6 +31,6 @@ if is_macos; then
   done
 elif is_linux; then
   for pkg in bc coreutils gawk jq playerctl; do
-    apt_install "$pkg"
+    apt_install "$pkg" || log_warn "optional tmux dependency '$pkg' not installed"
   done
 fi
