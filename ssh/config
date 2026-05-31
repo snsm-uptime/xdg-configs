@@ -1,3 +1,6 @@
+# Local overrides (generated from dotfiles.local.env) — gitignored
+Include config.local
+
 Host personal.github.com
   HostName github.com
   User git

@@ -2,14 +2,12 @@
     name = Sebastian Soto M
     email = s.m.sebastian.n@gmail.com
 
-[includeIf "gitdir:$HOME/Documents/github/personal"]
-    path = $XDG_CONFIG_HOME/git/gitconfig-personal
-
-[includeIf "gitdir:$HOME/Documents/github/uptime"]
-    path = $XDG_CONFIG_HOME/git/gitconfig-uptime
+# Machine-specific includeIf paths — generated in gitconfig-local from dotfiles.local.env
+[include]
+    path = gitconfig-local
 
 [oh-my-zsh]
-	git-commit-alias = 2d5841740a7555fe10b4592673c4069713e66aba
+	git-commit-alias = d170d18746bb06db7b2fc97b67e281597a3fc152
 [alias]
 	build = "!a() {\nlocal _scope _attention _message\nwhile [ $# -ne 0 ]; do\ncase $1 in\n  -s | --scope )\n    if [ -z $2 ]; then\n      echo \"Missing scope!\"\n      return 1\n    fi\n    _scope=\"$2\"\n    shift 2\n    ;;\n  -a | --attention )\n    _attention=\"!\"\n    shift 1\n    ;;\n  * )\n    _message=\"${_message} $1\"\n    shift 1\n    ;;\nesac\ndone\ngit commit -m \"build${_scope:+(${_scope})}${_attention}:${_message}\"\n}; a"
 	chore = "!a() {\nlocal _scope _attention _message\nwhile [ $# -ne 0 ]; do\ncase $1 in\n  -s | --scope )\n    if [ -z $2 ]; then\n      echo \"Missing scope!\"\n      return 1\n    fi\n    _scope=\"$2\"\n    shift 2\n    ;;\n  -a | --attention )\n    _attention=\"!\"\n    shift 1\n    ;;\n  * )\n    _message=\"${_message} $1\"\n    shift 1\n    ;;\nesac\ndone\ngit commit -m \"chore${_scope:+(${_scope})}${_attention}:${_message}\"\n}; a"
