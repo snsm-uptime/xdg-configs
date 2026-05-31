@@ -6,12 +6,10 @@ alias vi="$EDITOR"
 # \___ \| |_) | |_| |
 #  ___) |  __/ \___/
 # |____/|_|
-SERVER_IP=187.124.250.74
-SSH_CLAW_KEY='~/.ssh/kvm_claw'
-SSH_KVM_KEY='~/.ssh/id_ed25519_uptime'
-alias sshroot="ssh -i $SSH_KVM_KEY root@$SERVER_IP"
-alias sshsnsm="ssh -i $SSH_KVM_KEY snsm@$SERVER_IP"
-alias sshclaw="ssh -i $SSH_CLAW_KEY claw@$SERVER_IP"
+if [[ -n "${DOTFILES_SSH_SERVER_IP:-}" && -n "${DOTFILES_SSH_KEY_KVM:-}" ]]; then
+  alias sshroot='ssh dotfiles-kvm-root'
+  alias sshsnsm='ssh dotfiles-kvm-snsm'
+fi
 
 #  _____    _ _ _      ____             __ _
 # | ____|__| (_) |_   / ___|___  _ __  / _(_) __ _ ___
@@ -32,16 +30,18 @@ alias egit='edit_config_file "git/config"'
 alias egitp='edit_config_file "git/gitconfig-personal"'
 alias egitu='edit_config_file "git/gitconfig-uptime"'
 
-#   _____  ____ _
+#  _____  ____ _  (eza — requires cli module)
 #  / _ \ \/ / _` |
 # |  __/>  < (_| |
 #  \___/_/\_\__,_|
-alias exa='exa --icons'
-alias l='exa -lT --level=2'
-alias ll='exa -als type'
-alias lt='exa -T --icons'
-alias la='exa -Dxas size'
-alias ls='exa -xas type'
+if command -v eza &>/dev/null; then
+  alias eza='eza --icons=always'
+  alias l='eza -l --tree --level=2 --icons=always'
+  alias ll='eza -al --sort=type --icons=always'
+  alias lt='eza --tree --icons=always'
+  alias la='eza -D -a --sort=size --icons=always'
+  alias ls='eza -a --sort=type --icons=always'
+fi
 
 #  ____             _
 # |  _ \  ___   ___| | _____ _ __
@@ -56,6 +56,8 @@ alias compprod='docker compose up -d --build'
 # | |_ / _ \| |/ _` |/ _ \ '__/ __|
 # |  _| (_) | | (_| |  __/ |  \__ \
 # |_|  \___/|_|\__,_|\___|_|  |___/
-alias cdgh='~/Documents/github/'
-alias cdup='cd ~/Documents/github/uptime/'
-alias cdpr='cd ~/Documents/github/personal/'
+if [[ -n "${DOTFILES_GITHUB_ROOT:-}" ]]; then
+  alias cdgh="cd ${DOTFILES_GITHUB_ROOT}"
+  alias cdup="cd ${DOTFILES_GITHUB_ROOT}/uptime"
+  alias cdpr="cd ${DOTFILES_GITHUB_ROOT}/personal"
+fi

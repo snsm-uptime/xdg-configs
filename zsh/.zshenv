@@ -4,6 +4,9 @@
 #  \  /| | | | |  _  | | | | | '__/ _ \/ __| __/ _ \| '__| |/ _ \/ __|
 #  /  \| |_| | |_| | | |_| | | | |  __/ (__| || (_) | |  | |  __/\__ \
 # /_/\_\____/ \____| |____/|_|_|  \___|\___|\__\___/|_|  |_|\___||___/
+export DOTFILES="${DOTFILES:-$HOME/.dotfiles}"
+[[ -f "$DOTFILES/dotfiles.local.env" ]] && set -a && . "$DOTFILES/dotfiles.local.env" && set +a
+
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
