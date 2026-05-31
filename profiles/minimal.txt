@@ -1,5 +1,6 @@
-# minimal — tuned shell
+# minimal — working shell without nvim/nvm/docker
 git
-tmux
-zsh
+cli
 fzf
+zsh
+tmux

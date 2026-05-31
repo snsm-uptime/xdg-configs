@@ -1,10 +1,12 @@
 # full — everything
 git
-tmux
-zsh
-fzf
-nvim
-nvm
 ssh
-docker
 gh
+cli
+fzf
+nvm
+nvim
+npm
+zsh
+tmux
+docker

@@ -1,7 +1,8 @@
 # slim — non dev environment
 ssh
-zsh
+gh
+cli
 fzf
+zsh
 tmux
 git
-gh
