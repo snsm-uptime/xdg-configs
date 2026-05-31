@@ -44,6 +44,10 @@ if git -C "$DOTFILES" rev-parse --is-inside-work-tree &>/dev/null; then
       ;;
   esac
   unset _sig_status
+
+  log_info "git submodule update --init --recursive"
+  git -C "$DOTFILES" submodule update --init --recursive
+  log_ok "Submodules updated"
 else
   log_warn "Not a git repo — skipping pull"
 fi
