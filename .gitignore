@@ -1,3 +1,8 @@
+# ── Local machine config (generated from dotfiles.local.env) ─────────────────
+dotfiles.local.env
+git/gitconfig-local
+ssh/config.local
+
 # ── Credentials & secrets ─────────────────────────────────────────────────────
 gh/hosts.yml               # OAuth tokens — never commit
 ssh/known_hosts
