@@ -6,6 +6,10 @@
 # /_/\_\____/ \____| |____/|_|_|  \___|\___|\__\___/|_|  |_|\___||___/
 export DOTFILES="${DOTFILES:-$HOME/.dotfiles}"
 [[ -f "$DOTFILES/dotfiles.local.env" ]] && set -a && . "$DOTFILES/dotfiles.local.env" && set +a
+if [[ -n "${DOTFILES_GITHUB_ROOT:-}" ]]; then
+  : "${DOTFILES_GITDIR_PERSONAL:=${DOTFILES_GITHUB_ROOT%/}/personal}"
+  : "${DOTFILES_GITDIR_UPTIME:=${DOTFILES_GITHUB_ROOT%/}/uptime}"
+fi
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"

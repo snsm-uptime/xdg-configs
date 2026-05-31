@@ -324,9 +324,7 @@ Defined in `dotfiles.local.env` and sourced by install scripts and `~/.zshenv`:
 
 | Variable | Description |
 |----------|-------------|
-| `DOTFILES_GITDIR_PERSONAL` | Personal git worktrees root |
-| `DOTFILES_GITDIR_UPTIME` | Work git worktrees root |
-| `DOTFILES_GITHUB_ROOT` | Base path for `cdgh` / `cdpr` / `cdup` |
+| `DOTFILES_GITHUB_ROOT` | Base path for `cdgh` / `cdpr` / `cdup` and git `includeIf` (`…/personal`, `…/uptime`) |
 | `DOTFILES_SSH_SERVER_IP` | Server IP for SSH aliases |
 | `DOTFILES_SSH_KEY_KVM` | SSH private key path |
 | `DOTFILES_EDITOR_HOSTNAME` | Optional hostname for `EDITOR=nvim` |

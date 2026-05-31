@@ -10,13 +10,23 @@ _env_example() { echo "${DOTFILES:-$HOME/.dotfiles}/dotfiles.local.env.example";
 
 # Keys to prompt (order matters). Optional keys allow empty input.
 _SETUP_KEYS=(
-  DOTFILES_GITDIR_PERSONAL
-  DOTFILES_GITDIR_UPTIME
   DOTFILES_GITHUB_ROOT
   DOTFILES_SSH_SERVER_IP
   DOTFILES_SSH_KEY_KVM
   DOTFILES_EDITOR_HOSTNAME
 )
+
+# Personal/uptime git roots live under DOTFILES_GITHUB_ROOT (override via env if needed).
+_setup_resolve_gitdirs() {
+  local root="${DOTFILES_GITHUB_ROOT:-}"
+  root="${root%/}"
+  if [[ -z "${DOTFILES_GITDIR_PERSONAL:-}" && -n "$root" ]]; then
+    DOTFILES_GITDIR_PERSONAL="${root}/personal"
+  fi
+  if [[ -z "${DOTFILES_GITDIR_UPTIME:-}" && -n "$root" ]]; then
+    DOTFILES_GITDIR_UPTIME="${root}/uptime"
+  fi
+}
 
 _setup_default_for_key() {
   local key="$1"
@@ -75,6 +85,7 @@ _setup_load_env() {
 }
 
 _setup_generate_gitconfig_local() {
+  _setup_resolve_gitdirs
   local out="$DOTFILES/git/gitconfig-local"
   local personal="${DOTFILES_GITDIR_PERSONAL:-}"
   local uptime="${DOTFILES_GITDIR_UPTIME:-}"
