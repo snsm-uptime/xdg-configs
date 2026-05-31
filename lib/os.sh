@@ -21,8 +21,21 @@ export OS ARCH
 is_macos() { [[ "$OS" == "macos" ]]; }
 is_linux() { [[ "$OS" == "linux" ]]; }
 
+is_wsl() {
+  [[ "$OS" == "linux" ]] && grep -qi microsoft /proc/version 2>/dev/null
+}
+
 # Check if a command exists
 has() { command -v "$1" &>/dev/null; }
+
+require_cmd() {
+  local cmd="$1"
+  if has "$cmd"; then
+    return 0
+  fi
+  log_error "Required command not found: $cmd"
+  return 1
+}
 
 # macOS package manager (homebrew)
 # Usage: brew_install <pkg> [version]
@@ -56,7 +69,13 @@ apt_install() {
   fi
   if ! dpkg -s "$pkg" &>/dev/null 2>&1; then
     log_info "apt-get install -y $install_arg"
-    [[ "$DRY_RUN" == "true" ]] || sudo apt-get install -y "$install_arg"
+    if [[ "$DRY_RUN" == "true" ]]; then
+      return 0
+    fi
+    if ! sudo apt-get install -y "$install_arg"; then
+      log_warn "apt-get install failed for '$install_arg' (sudo/password?)"
+      return 1
+    fi
   else
     log_skip "$pkg already installed"
   fi
