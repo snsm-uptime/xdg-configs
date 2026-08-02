@@ -27,3 +27,21 @@ else
     fi
   fi
 fi
+
+# Ensure an LTS node version is available regardless of whether nvm was just
+# installed or already present.
+if [[ "$DRY_RUN" == "false" ]]; then
+  export NVM_DIR="$NVM_INSTALL_DIR"
+  # shellcheck source=/dev/null
+  source "$NVM_INSTALL_DIR/nvm.sh"
+  if ! nvm version lts/* &>/dev/null || [[ "$(nvm version lts/*)" == "N/A" ]]; then
+    log_info "Installing Node LTS via nvm"
+    nvm install --lts
+    nvm alias default lts/*
+    log_ok "Node $(node --version) set as default"
+  else
+    log_skip "Node LTS already installed → $(nvm version lts/*)"
+  fi
+else
+  log_dry "nvm install --lts && nvm alias default lts/*"
+fi

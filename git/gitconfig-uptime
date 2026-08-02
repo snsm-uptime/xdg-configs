@@ -1,4 +1,4 @@
 [core]
-    sshCommand = "ssh -o IdentitiesOnly=yes -F ~/.ssh/config uptime.github.com"
+    sshCommand = "ssh -o IdentitiesOnly=yes -i ~/.ssh/uptime -F ~/.ssh/config"
 [user]
     email = apps.uptime@gmail.com

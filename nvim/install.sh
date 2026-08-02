@@ -6,6 +6,26 @@
 
 link "$DOTFILES/nvim/config" "$XDG_CONFIG_HOME/nvim"
 
+# ── C compiler (required by nvim-treesitter to build parsers) ─────────────────
+_nvim_ensure_c_compiler() {
+  if has cc || has gcc || has clang; then
+    log_skip "C compiler already available"
+    return 0
+  fi
+
+  log_info "C compiler not found — installing (needed by nvim-treesitter)"
+  if is_macos; then
+    brew_install gcc || log_warn "gcc install failed — treesitter parsers may not compile"
+  elif is_linux; then
+    apt_install build-essential || log_warn "build-essential install failed — treesitter parsers may not compile"
+  else
+    log_warn "No package manager path for a C compiler on $OS"
+    return 1
+  fi
+}
+
+_nvim_ensure_c_compiler
+
 # ── Submodules ────────────────────────────────────────────────────────────────
 if [[ -z "$(ls -A "$DOTFILES/nvim/config" 2>/dev/null)" ]]; then
   log_info "Initializing nvim submodule (LazyVim starter)"
