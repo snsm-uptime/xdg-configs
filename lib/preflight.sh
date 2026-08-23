@@ -37,6 +37,10 @@ preflight() {
     log_warn "apt-get not found — nvim AppImage install may need manual dependencies"
   fi
 
+  if [[ "$need_nvim" == "true" ]] && ! has cc && ! has gcc && ! has clang; then
+    log_warn "No C compiler in PATH — nvim module will install build-essential/gcc for treesitter"
+  fi
+
   local needs_brew=false needs_apt=false
   for mod in "${modules[@]}"; do
     case "$mod" in

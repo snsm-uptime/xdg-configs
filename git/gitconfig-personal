@@ -1,4 +1,4 @@
 [core]
-    sshCommand = "ssh -o IdentitiesOnly=yes -F ~/.ssh/config personal.github.com"
+    sshCommand = "ssh -o IdentitiesOnly=yes -i ~/.ssh/personal -F ~/.ssh/config"
 [user]
     email = s.m.sebastian.n@gmail.com

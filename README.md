@@ -30,7 +30,7 @@ Machine-specific paths (git roots, SSH hosts, shell shortcuts) live in **`dotfil
 | `curl` | any | Used by `nvm`, `nvim`, and `cli` (eza fallback) |
 | Homebrew | any | macOS only; skipped if missing |
 | `apt-get` | any | Linux / WSL; used when available |
-| `sudo` | — | Required for apt packages (`zsh`, `eza`, `libfuse2`, tmux deps) |
+| `sudo` | — | Required for apt packages (`zsh`, `eza`, `libfuse2`, `build-essential`, tmux deps) |
 
 **Windows:** native PowerShell/cmd is **not supported**. Use **WSL** (treated as Linux).
 
@@ -58,7 +58,7 @@ sudo apt update
 sudo apt install -y git curl zsh
 ```
 
-The installer can pull `eza`, `libfuse2`, `jq`, and `playerctl` via apt as well, but **sudo must be available** when `./install.sh` runs. In CI or non-interactive shells without passwordless sudo, run apt yourself first.
+The installer can pull `eza`, `libfuse2`, `build-essential`, `jq`, and `playerctl` via apt as well, but **sudo must be available** when `./install.sh` runs. In CI or non-interactive shells without passwordless sudo, run apt yourself first.
 
 ### 3. Run the installer
 
@@ -300,7 +300,7 @@ Module order is fixed in `profiles/*.txt` so shell configs are linked **after** 
 | `cli` | Installs `zsh` and `eza` (apt/brew or GitHub binary); runs `chsh` (warns on failure) |
 | `fzf` | Clones fzf to `$XDG_DATA_HOME/fzf`; links Tokyo Night theme |
 | `nvm` | Installs nvm into `$XDG_CONFIG_HOME/nvm` |
-| `nvim` | LazyVim submodule; Linux AppImage with GitHub digest verify; `libfuse2` on WSL |
+| `nvim` | LazyVim submodule; Linux AppImage with GitHub digest verify; `libfuse2` on WSL; C compiler (`build-essential` / `gcc`) for treesitter |
 | `npm` | Symlinks XDG `npmrc` |
 | `zsh` | `.zshenv`, `.zshrc`, `.zprofile`, p10k; Oh My Zsh + Powerlevel10k |
 | `tmux` | `tmux.conf`, TPM, optional theme dependencies |
@@ -351,6 +351,7 @@ If a module fails, the installer **continues** with remaining modules and report
 | `sudo: a password is required` | Non-interactive install without sudo | Run `sudo apt install …` manually, then re-run `./install.sh` |
 | `zsh: command not found` after install | `zsh` not installed | `sudo apt install zsh` then `exec zsh -l` |
 | nvim AppImage won't run on WSL | Missing FUSE | `sudo apt install libfuse2` |
+| treesitter parser compile fails | No C compiler | `sudo apt install build-essential` (or `brew install gcc`) |
 | `eza: command not found` in current shell | PATH not loaded | `source ~/.zshenv` or open a new login shell |
 | First-run prompts every time | Missing setup marker | Run `./install.sh` without `--skip-setup` once |
 
