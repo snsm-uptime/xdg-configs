@@ -1,3 +1,5 @@
 {
-  "credsStore": ""
+	"auths": {},
+	"credsStore": "osxkeychain",
+	"currentContext": "desktop-linux"
 }

@@ -46,6 +46,11 @@ export PATH="$CARGO_HOME/bin:$PATH"
 # |_| /___|_|
 export PATH="$XDG_DATA_HOME/fzf/bin:$PATH"
 
+# macOS only: prioritize Homebrew Python 3.13 as default
+if [[ "$OSTYPE" == darwin* ]]; then
+  export PATH="/opt/homebrew/bin:$PATH"
+fi
+
 #  ____           _                 ____   ___  _     
 # |  _ \ ___  ___| |_ __ _ _ __ ___/ ___| / _ \| |    
 # | |_) / _ \/ __| __/ _` | '__/ _ \___ \| | | | |    
@@ -63,8 +68,10 @@ export PGSERVICEFILE="$XDG_CONFIG_HOME/pg/pg_service.conf"
 # | | | \ V /| | | | | |
 # |_| |_|\_/ |_| |_| |_|
 export NVM_DIR="$XDG_CONFIG_HOME/nvm"
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"                      # macOS: Homebrew
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+if [[ "$OSTYPE" == darwin* ]]; then                                                             # macOS: Homebrew
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+fi
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                                                # Linux: direct install
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 

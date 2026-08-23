@@ -66,6 +66,15 @@ zstyle ':omz:plugins:alias-finder' cheaper yes
 
 export PATH="$PATH:$HOME/.local/bin"
 
+# macOS only — re-assert Homebrew priority: /etc/zprofile's path_helper (run
+# after .zshenv, on login shells) puts /usr/bin ahead of /opt/homebrew/bin
+# again, which silently breaks `python3` (resolves to Apple's 3.9.6 stub
+# instead of Homebrew's 3.13). Put it back in front here, after path_helper
+# has run.
+if [[ "$OSTYPE" == darwin* ]]; then
+  export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
+fi
+
 if [[ "$OSTYPE" == darwin* && -d "$HOME/.docker/completions" ]]; then
   fpath=("$HOME/.docker/completions" $fpath)
 fi
