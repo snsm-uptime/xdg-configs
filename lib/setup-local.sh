@@ -119,6 +119,19 @@ EOF
 EOF
   fi
 
+  # Extra dirs outside DOTFILES_GITHUB_ROOT/uptime that use the uptime identity (space-separated)
+  local extra
+  for extra in ${DOTFILES_GITDIR_UPTIME_EXTRA:-}; do
+    extra="${extra%/}"
+    cat >>"$out" <<EOF
+
+[includeIf "gitdir:${extra}/"]
+    path = gitconfig-uptime
+[includeIf "gitdir:${extra}/**"]
+    path = gitconfig-uptime
+EOF
+  done
+
   log_ok "Generated $out"
 }
 
