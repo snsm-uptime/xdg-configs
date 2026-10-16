@@ -43,21 +43,22 @@ source "$ZDOTDIR/alias.zsh"
 [[ -f "$ZDOTDIR/.p10k.zsh" ]] && source "$ZDOTDIR/.p10k.zsh"
 
 # Preferred editor
-if command -v nvim &>/dev/null; then
-  if [[ -n "$SSH_CONNECTION" ]] || {
-    [[ -n "${DOTFILES_EDITOR_HOSTNAME:-}" ]] && [[ "$(hostname)" == "$DOTFILES_EDITOR_HOSTNAME" ]]
-  }; then
-    export EDITOR='nvim'
-  elif [[ -n "$SSH_CONNECTION" ]]; then
-    export EDITOR='vim'
-  else
-    export EDITOR='nvim'
-  fi
-elif command -v vim &>/dev/null; then
-  export EDITOR='vim'
-else
-  export EDITOR='vi'
-fi
+export EDITOR=nvim
+# if command -v nvim &>/dev/null; then
+#   if [[ -n "$SSH_CONNECTION" ]] || {
+#     [[ -n "${DOTFILES_EDITOR_HOSTNAME:-}" ]] && [[ "$(hostname)" == "$DOTFILES_EDITOR_HOSTNAME" ]]
+#   }; then
+#     export EDITOR='nvim'
+#   elif [[ -n "$SSH_CONNECTION" ]]; then
+#     export EDITOR='vim'
+#   else
+#     export EDITOR='nvim'
+#   fi
+# elif command -v vim &>/dev/null; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='vi'
+# fi
 
 zstyle ':omz:plugins:alias-finder' autoload yes
 zstyle ':omz:plugins:alias-finder' longer yes
