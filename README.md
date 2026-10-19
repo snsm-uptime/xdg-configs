@@ -304,7 +304,7 @@ Module order is fixed in `profiles/*.txt` so shell configs are linked **after** 
 | `npm` | Symlinks XDG `npmrc` |
 | `zsh` | `.zshenv`, `.zshrc`, `.zprofile`, p10k; Oh My Zsh + Powerlevel10k |
 | `tmux` | `tmux.conf`, TPM, optional theme dependencies |
-| `docker` | `config.json` template (`credsStore` empty) |
+| `docker` | Per-OS `config.json` (macOS: `osxkeychain` + `desktop-linux`; WSL: `desktop.exe` helper, default context; Linux: no helper) |
 
 ---
 
