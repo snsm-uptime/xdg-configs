@@ -5,6 +5,7 @@ gh
 cli
 fzf
 nvm
+uv
 nvim
 npm
 zsh

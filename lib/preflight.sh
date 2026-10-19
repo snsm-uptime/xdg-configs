@@ -24,7 +24,7 @@ preflight() {
 
   for mod in "${modules[@]}"; do
     case "$mod" in
-    nvm | nvim) need_curl=true ;;
+    nvm | nvim | uv) need_curl=true ;;
     esac
     [[ "$mod" == "nvim" ]] && need_nvim=true
   done

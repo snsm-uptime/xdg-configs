@@ -27,7 +27,7 @@ Machine-specific paths (git roots, SSH hosts, shell shortcuts) live in **`dotfil
 |------------|---------|-------|
 | `bash` | 3.2+ | macOS ships 3.2; Linux distros ship 5.x |
 | `git` | 2.13+ | Submodule support for nvim/LazyVim |
-| `curl` | any | Used by `nvm`, `nvim`, and `cli` (eza fallback) |
+| `curl` | any | Used by `nvm`, `uv` (Linux), `nvim`, and `cli` (eza fallback) |
 | Homebrew | any | macOS only; skipped if missing |
 | `apt-get` | any | Linux / WSL; used when available |
 | `sudo` | — | Required for apt packages (`zsh`, `eza`, `libfuse2`, `build-essential`, tmux deps) |
@@ -243,7 +243,7 @@ rm -f ~/.config/nvim
 **Binaries** (user-local, no sudo):
 
 ```bash
-rm -f ~/.local/bin/{eza,nvim}
+rm -f ~/.local/bin/{eza,nvim,uv,uvx}
 ```
 
 **Cloned tools:**
@@ -284,7 +284,7 @@ mv ~/.zshrc.bak-20260529170900 ~/.zshrc   # example
 
 | Profile | Modules | Best for |
 |---------|---------|----------|
-| `full` | git, ssh, gh, cli, fzf, nvm, nvim, npm, zsh, tmux, docker | Primary workstation |
+| `full` | git, ssh, gh, cli, fzf, nvm, uv, nvim, npm, zsh, tmux, docker | Primary workstation |
 | `slim` | ssh, gh, cli, fzf, zsh, tmux, git | Servers without Docker/nvim |
 | `minimal` | git, cli, fzf, zsh, tmux | Working shell without nvim/nvm/docker |
 
@@ -300,6 +300,7 @@ Module order is fixed in `profiles/*.txt` so shell configs are linked **after** 
 | `cli` | Installs `zsh` and `eza` (apt/brew or GitHub binary); runs `chsh` (warns on failure) |
 | `fzf` | Clones fzf to `$XDG_DATA_HOME/fzf`; links Tokyo Night theme |
 | `nvm` | Installs nvm into `$XDG_CONFIG_HOME/nvm` |
+| `uv` | Installs uv (macOS: Homebrew; Linux/WSL: official standalone installer into `~/.local/bin`, rc files untouched) |
 | `nvim` | LazyVim submodule; Linux AppImage with GitHub digest verify; `libfuse2` on WSL; C compiler (`build-essential` / `gcc`) for treesitter |
 | `npm` | Symlinks XDG `npmrc` |
 | `zsh` | `.zshenv`, `.zshrc`, `.zprofile`, p10k; Oh My Zsh + Powerlevel10k |
